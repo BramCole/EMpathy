@@ -1,4 +1,4 @@
-# EMSpace
+# EMPathy
 An AR Electromagnetic Learning Tool
 
 If you have just opened this repository you will need to download a few things to work with it:  
