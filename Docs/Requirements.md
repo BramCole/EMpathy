@@ -1,1 +1,4 @@
-
+Highest level: iOS app with UI for selecting between lessons/demonstrations that have been prepared. 
+Lesson/demonstration selection: accesses the AR environment which we have prepared using Vuforia. Access to the user's smartphone camera at this step. Tracking of actual objects/surfaces not necessary? 
+AR environment: will have objects generated and placed using Unity per the physics computation. Unity links object placement/display to back-end physics computation. Unity-based interface to selct whether to show field lines, potential lines, etc. at this level?
+Physics computation: Lesson plans will select between scripts prepared to position charges etc., and to calculate the position of field lines. Complexity of simulation we are able to achieve at this level will determine the lessons we make available. 
