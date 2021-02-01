@@ -32,24 +32,21 @@ public class FieldMake : MonoBehaviour
         }
 
     }
-
+    int count = 0;
     // Update is called once per frame
     void Update()
     {
+        
+        count++;
+
         foreach (GameObject i in arrowCollection)
         {
             i.transform.Rotate(0, 2f, 0);
         }
         foreach (Material i in myMaterial)
         {
-            if (i.color == Color.red)
-            {
-                i.color = Color.blue;
-            }
-            if (i.color == Color.blue)
-            {
-                i.color = Color.red;
-            }
+     
+            i.color = new Color( ((count+500)%1000f)*0.001f, 0, (count % 1000f) * 0.001f);
         }
     }
 
