@@ -14,7 +14,7 @@ public class FieldMake : MonoBehaviour
     public GameObject newObject;
     Material[] myMaterial = new Material[length];
 
-    Vector3 scaleSet = new Vector3(38, 38, 38);
+    Vector3 scaleSet = new Vector3(20, 30, 50);
   
     ArrayList arrowCollection = new ArrayList();
     // Start is called before the first frame update
