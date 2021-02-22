@@ -11,7 +11,7 @@
   * Go to file build settings. A bundle identifier should be set if not set the company name to EMWare and the product name to EMPathy. The bundle identifier should change to com.EMWare.EMPathy   if not change the identifier to this (since we are deploying on personal phones it doesn’t actually matter what bundle identifier you use). 
 A camera usage description must be set in the player settings under configurations change it to ```$(PRODUCT_NAME) camera use ```
 
-  * Vuforia also wants a minimum iOS version of 11.0 so change that in the player settings also.
+  * Vuforia also wants a minimum iOS version of 11.0 so change that in the player settings also. Once done build and run for ios
 
   * Once in XCode there will be a little window in the left that shows files. Click the blueprint one that probably says unity-iPhone. This will bring you to XCode project settings. Go to signing and check automatically manage signing. After choose a team. 
 
