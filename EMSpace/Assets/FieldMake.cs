@@ -10,9 +10,9 @@ public class FieldMake : MonoBehaviour
        public Material material;
     }
     public someMaterial arrowMat;
-    static int length = 100;
+    static int numArrows = 100;
     public GameObject newObject;
-    Material[] myMaterial = new Material[length];
+    Material[] myMaterial = new Material[numArrows];
 
     Vector3 scaleSet = new Vector3(20, 30, 50);
   
@@ -21,10 +21,10 @@ public class FieldMake : MonoBehaviour
     void Start()
     {
 
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < numArrows; i++)
         {
             GameObject obj = Instantiate(newObject);
-            obj.transform.position = new Vector3(0.0f, (i % 10) * 0.03f, 0.05f * i);
+            obj.transform.position = new Vector3(0.0f, i * 0.03f, 0.0f);
             obj.transform.localScale = scaleSet;
             arrowCollection.Add(obj);
             myMaterial[i] = arrowMat.material;
@@ -45,7 +45,7 @@ public class FieldMake : MonoBehaviour
         }
         foreach (Material i in myMaterial)
         {
-     
+            //colour is rgb to 1 not 255
             i.color = new Color( ((count+500)%1000f)*0.001f, 0, (count % 1000f) * 0.001f);
         }
     }
