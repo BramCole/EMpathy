@@ -99,9 +99,8 @@ public class AnalyticCharge : MonoBehaviour
                     obj.transform.position = new Vector3(fieldPointPos.x, fieldPointPos.y, fieldPointPos.z);
                     obj.transform.localScale = scaleSet;
                     //obj.transform.Rotate((180 / Mathf.PI) * Mathf.Acos(Vector3.Dot(eHat,xHat)), (180 / Mathf.PI) * Mathf.Acos(Vector3.Dot(eHat, yHat)), (180 / Mathf.PI) * Mathf.Acos(Vector3.Dot(eHat, zHat)), Space.World);
-
           
-                    obj.transform.Rotate(0, (180/Mathf.PI) * Mathf.Asin(eHat.z)*Mathf.Acos(eHat.x),(180/Mathf.PI) * Mathf.Asin(eHat.y));
+                    obj.transform.Rotate(0, ((180/Mathf.PI) * Mathf.Atan2(-eHat.z,eHat.x))+180,(-180/Mathf.PI) * Mathf.Asin(eHat.y));
                     arrowCollection.Add(obj);
                     myMaterial[arrowCount] = arrowMat.material;
                     myMaterial[arrowCount].color = Color.red;

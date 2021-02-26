@@ -285,7 +285,7 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: 8928ebf3ee2874b9b9981a3367dc14fc, type: 2}
   newObject: {fileID: 83515877}
   pointSourcePos: {x: 0, y: 0, z: 0}
-  pointSourceCharge: 1
+  pointSourceCharge: 8
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +545,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5e734c9b3f8247938296c9b5da4ed34,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8292333137533979235, guid: b5e734c9b3f8247938296c9b5da4ed34,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8292333137533979235, guid: b5e734c9b3f8247938296c9b5da4ed34,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8292333137533979235, guid: b5e734c9b3f8247938296c9b5da4ed34,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8292333137533979235, guid: b5e734c9b3f8247938296c9b5da4ed34,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
