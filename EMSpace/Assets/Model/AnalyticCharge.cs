@@ -86,6 +86,7 @@ public class AnalyticCharge : MonoBehaviour
                     eField = (coloumbConstant * pointSourceCharge) / (Mathf.Pow(Vector3.Magnitude(R), 2)) * Vector3.Normalize(R);
 
                     Vector3 eHat = Vector3.Normalize(eField);
+                    print(eHat.x);
                     float eMag = Vector3.Magnitude(eField);
 
 
@@ -98,7 +99,9 @@ public class AnalyticCharge : MonoBehaviour
                     obj.transform.position = new Vector3(fieldPointPos.x, fieldPointPos.y, fieldPointPos.z);
                     obj.transform.localScale = scaleSet;
                     //obj.transform.Rotate((180 / Mathf.PI) * Mathf.Acos(Vector3.Dot(eHat,xHat)), (180 / Mathf.PI) * Mathf.Acos(Vector3.Dot(eHat, yHat)), (180 / Mathf.PI) * Mathf.Acos(Vector3.Dot(eHat, zHat)), Space.World);
-                    obj.transform.Rotate(new Vector3(0, (180/Mathf.PI)*Mathf.Atan2(eField.y,eField.x), (180 / Mathf.PI) * Mathf.Asin(eField.z)));
+
+          
+                    obj.transform.Rotate(0, (180/Mathf.PI) * Mathf.Asin(eHat.z)*Mathf.Acos(eHat.x),(180/Mathf.PI) * Mathf.Asin(eHat.y));
                     arrowCollection.Add(obj);
                     myMaterial[arrowCount] = arrowMat.material;
                     myMaterial[arrowCount].color = Color.red;
