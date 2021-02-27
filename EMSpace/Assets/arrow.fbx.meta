@@ -1,0 +1,312 @@
+fileFormatVersion: 2
+guid: b5e734c9b3f8247938296c9b5da4ed34
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: defaultMat
+    second: {fileID: 2100000, guid: 8928ebf3ee2874b9b9981a3367dc14fc, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FourDiffusersWithOverheadStudio_IRD_c00.renderer
+    second: {fileID: 2800000, guid: 28e0a824769f24378b92dff4437c2de4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FourDiffusersWithOverheadStudio_IRD_c01.renderer
+    second: {fileID: 2800000, guid: d5e34ea6738434af8bec15c245b7512b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FourDiffusersWithOverheadStudio_IRD_c02.renderer
+    second: {fileID: 2800000, guid: 0d20f6d7065ad408db64d30d4e8f5483, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FourDiffusersWithOverheadStudio_IRD_c03.renderer
+    second: {fileID: 2800000, guid: 6084584492c6d4a5f87e5aedbb7c1dc0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FourDiffusersWithOverheadStudio_IRD_c04.renderer
+    second: {fileID: 2800000, guid: 9be053069c99b44f591c41be9e579a9e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FourDiffusersWithOverheadStudio_IRD_c05.renderer
+    second: {fileID: 2800000, guid: afd10549f10d541b087f75a44fb231de, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FourDiffusersWithOverheadStudio_SPEC_c00.renderer
+    second: {fileID: 2800000, guid: 986854d4c5ef54903bee75095bd6d77e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FourDiffusersWithOverheadStudio_SPEC_c01.renderer
+    second: {fileID: 2800000, guid: 3187f75ac2ecc46668ce2010111b7c0c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FourDiffusersWithOverheadStudio_SPEC_c02.renderer
+    second: {fileID: 2800000, guid: 56ef21ebdce23416b98cd7ea1731f580, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FourDiffusersWithOverheadStudio_SPEC_c03.renderer
+    second: {fileID: 2800000, guid: 58763af5344244237a63a221cc71c9fd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FourDiffusersWithOverheadStudio_SPEC_c04.renderer
+    second: {fileID: 2800000, guid: 99ef6f2798d804c56aadb36096a74ab9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FourDiffusersWithOverheadStudio_SPEC_c05.renderer
+    second: {fileID: 2800000, guid: e5a162eef21f84553b5dadabc010e3c8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TwoDiffusersStudio_SPEC_c00.renderer
+    second: {fileID: 2800000, guid: 1d88dcb8ba95443fe8dd7a1eafaad082, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TwoDiffusersStudio_SPEC_c01.renderer
+    second: {fileID: 2800000, guid: a1529953a455d4b018ab0c55c7bfcd19, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TwoDiffusersStudio_SPEC_c02.renderer
+    second: {fileID: 2800000, guid: 38e6da46dce2843d38ba412dceb57685, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TwoDiffusersStudio_SPEC_c03.renderer
+    second: {fileID: 2800000, guid: 82643f5d7d5dc46c49d6abb824f19505, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TwoDiffusersStudio_SPEC_c04.renderer
+    second: {fileID: 2800000, guid: cbaac66d0e3c44ff889165042c1b89b5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: TwoDiffusersStudio_SPEC_c05.renderer
+    second: {fileID: 2800000, guid: f1185f82886b34f48b07a61a60e1c2e5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sunnyVila_IRD_c00.renderer
+    second: {fileID: 2800000, guid: 10afd72b8c94f4ec0b7de7ac747f360e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sunnyVila_IRD_c01.renderer
+    second: {fileID: 2800000, guid: 3e3ec283a82df45f489fd3b322f40aa5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sunnyVila_IRD_c02.renderer
+    second: {fileID: 2800000, guid: 7670775cbb73849fdadb29f039397855, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sunnyVila_IRD_c03.renderer
+    second: {fileID: 2800000, guid: a038c72dec58d4e4aaf2ee05fdcba1a1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sunnyVila_IRD_c04.renderer
+    second: {fileID: 2800000, guid: f7882fb20178d4e809a69dde058c9e1b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sunnyVila_IRD_c05.renderer
+    second: {fileID: 2800000, guid: 54fc96ef91c464e7dbe9b161fc2e0072, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sunnyVila_SPE_c00.renderer
+    second: {fileID: 2800000, guid: 3ee9a5a77e5344ce39aa706ed83308b4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sunnyVila_SPE_c01.renderer
+    second: {fileID: 2800000, guid: fa89957ade7a34653a82103f0e8d3feb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sunnyVila_SPE_c02.renderer
+    second: {fileID: 2800000, guid: 10ed6c62e628f431da249fbb37c95dd3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sunnyVila_SPE_c03.renderer
+    second: {fileID: 2800000, guid: 2d714487ac7a44ec2897121f3ce5c22f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sunnyVila_SPE_c04.renderer
+    second: {fileID: 2800000, guid: 3bdf4691608d148838df5912846aedc1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: sunnyVila_SPE_c05.renderer
+    second: {fileID: 2800000, guid: 16dab16ee95c646b39afefc5d582695b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uffizi-large_IRD_c00.renderer
+    second: {fileID: 2800000, guid: fc93a089e73ea4313b22d89809e1442f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uffizi-large_IRD_c01.renderer
+    second: {fileID: 2800000, guid: c704cae2deb2d49ed9fc1bbcf1f5ac64, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uffizi-large_IRD_c02.renderer
+    second: {fileID: 2800000, guid: 80d5cbca671734309ab17b13fd654edc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uffizi-large_IRD_c03.renderer
+    second: {fileID: 2800000, guid: 2444bd19257554127a28c69e884ddc20, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uffizi-large_IRD_c04.renderer
+    second: {fileID: 2800000, guid: 139d5f567b2a74bc49182433984babb8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uffizi-large_IRD_c05.renderer
+    second: {fileID: 2800000, guid: 3b82c6e0b35b34999bf8a7e66a8cb3e9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uffizi-large_SPE_c00.renderer
+    second: {fileID: 2800000, guid: 497b7c3a4716e48a3b5d3fe3cb4f8d90, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uffizi-large_SPE_c01.renderer
+    second: {fileID: 2800000, guid: 770caef127e3f49b0b9d3ff3a52a185e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uffizi-large_SPE_c02.renderer
+    second: {fileID: 2800000, guid: f6bfb46dc638e45f4b652b1dea33247a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uffizi-large_SPE_c03.renderer
+    second: {fileID: 2800000, guid: 66aa72fe204de43ddbe550ab612f1408, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uffizi-large_SPE_c04.renderer
+    second: {fileID: 2800000, guid: 25e270cfdeefe47beaa979468d085475, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: uffizi-large_SPE_c05.renderer
+    second: {fileID: 2800000, guid: d4d386c3eedd7440c997acacc73319e0, type: 3}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
