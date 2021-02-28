@@ -139,7 +139,7 @@ public class AnalyticCharge : MonoBehaviour
         Vector3 R = fieldPointPos - pointSourcePos;
         eField = (coloumbConstant * pointSourceCharge) / (Mathf.Pow(Vector3.Magnitude(R), 2)) * Vector3.Normalize(R);
 
-        return new Vector3(1,1,1);
+        return eField;
     }
 
 
