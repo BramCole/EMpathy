@@ -81,10 +81,9 @@ public class AnalyticCharge : MonoBehaviour
                     }
 
                     //------------------------------needs to be refactored so we can retain code cohesion--------  //this is where we add in the field calculation
-                    float coloumbConstant = 9*10^9;
-                    Vector3 R = fieldPointPos - pointSourcePos;
-                    eField = (coloumbConstant * pointSourceCharge) / (Mathf.Pow(Vector3.Magnitude(R), 2)) * Vector3.Normalize(R);
 
+                    eField = SinglePointCharge(fieldPointPos, pointSourcePos, pointSourceCharge);
+                    
                     Vector3 eHat = Vector3.Normalize(eField);
                     print(eHat.x);
                     float eMag = Vector3.Magnitude(eField);
@@ -133,6 +132,15 @@ public class AnalyticCharge : MonoBehaviour
         //        i.color = new Color(((count + 500) % 1000f) * 0.001f, 0, (count % 1000f) * 0.001f);
         //    }
         }
+
+    Vector3 SinglePointCharge(Vector3 fieldPointPos, Vector3 pointSourcePos, float pointSourceCharge)
+    {
+        float coloumbConstant = 9 * 10 ^ 9;
+        Vector3 R = fieldPointPos - pointSourcePos;
+        eField = (coloumbConstant * pointSourceCharge) / (Mathf.Pow(Vector3.Magnitude(R), 2)) * Vector3.Normalize(R);
+
+        return new Vector3(1,1,1);
+    }
 
 
     }
