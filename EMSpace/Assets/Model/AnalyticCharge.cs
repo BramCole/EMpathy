@@ -31,8 +31,8 @@ public class AnalyticCharge : MonoBehaviour
     float zSpacing = 0.15f;
     float xPlaneSpacing = 0.15f;
 
-    int yNumRows = 8;
-    int zNumArrows = 8;
+    int yNumRows = 7;
+    int zNumArrows = 7;
 
 
 
@@ -45,6 +45,8 @@ public class AnalyticCharge : MonoBehaviour
         Vector3 yHat = new Vector3(0, 1, 0);
         Vector3 zHat = new Vector3(0, 0, 1);
         float coloumbConstant = 9 * 10 ^ 9;
+
+        float maxField = 0;  //all mag no direction so zero is minimum
 
         int xPlaneCount = 0;
         int arrowCount = 0;
@@ -73,7 +75,7 @@ public class AnalyticCharge : MonoBehaviour
                 }
                 else
                 {
-                    fieldPointPos.y = pointSourcePos.y - (i / 2) * ySpacing;
+                    fieldPointPos.y = pointSourcePos.y - (i / 2) * ySpacing - ySpacing;  //i starts at zero so we would apply an arrow to the same postion twice if we did not offset(could also alter i)
                 }
 
 
@@ -86,21 +88,27 @@ public class AnalyticCharge : MonoBehaviour
                     }
                     else
                     {
-                        fieldPointPos.z = pointSourcePos.z - (j / 2) * zSpacing;
+                        fieldPointPos.z = pointSourcePos.z - (j / 2) * zSpacing - zSpacing;
                     }
 
 
 
                     Vector3 R = fieldPointPos - pointSourcePos;
+                    print(R);
                     //------------------------------needs to be refactored so we can retain code cohesion--------  //ie this is where we call whatever field funtion we are using(eg get capacitor)
                     //currently just using point charge
 
-                    eField = (coloumbConstant * pointSourceCharge) / (Mathf.Pow(Vector3.Magnitude(R), 2)) * Vector3.Normalize(R);
+                    eField = ((coloumbConstant * pointSourceCharge) / (Mathf.Pow(Vector3.Magnitude(R), 2))) * Vector3.Normalize(R);
 
                     //-------------------------------------------------------------------------------
+                    
                     Vector3 eHat = Vector3.Normalize(eField);
                     float eMag = Vector3.Magnitude(eField);
 
+                    if (eMag > maxField)
+                    {
+                        maxField = eMag;
+                    }
 
                     GameObject obj = Instantiate(newObject);
                     obj.transform.position = new Vector3(fieldPointPos.x, fieldPointPos.y, fieldPointPos.z);
@@ -108,7 +116,7 @@ public class AnalyticCharge : MonoBehaviour
                     obj.transform.Rotate(0, ((180 / Mathf.PI) * Mathf.Atan2(-eHat.z, eHat.x)) + 180, (-180 / Mathf.PI) * Mathf.Asin(eHat.y));
                     arrowCollection.Add(obj);
                     myMaterial[arrowCount] = arrowMat.material;
-                    myMaterial[arrowCount].color = Color.red;
+                    myMaterial[arrowCount].color = new Color(eMag, 0, 0);
 
                     arrowCount++;
 
@@ -119,6 +127,12 @@ public class AnalyticCharge : MonoBehaviour
 
             xPlaneCount++;
 
+        }
+
+
+       foreach (Material i in myMaterial)
+        {
+            i.color = heatMap(0.0f, maxField,i.color.r);
         }
 
     }
@@ -139,5 +153,12 @@ public class AnalyticCharge : MonoBehaviour
         //    }
     }
 
-
+    Color heatMap(float min,float max,float value)
+    {
+        float ratio = 2 * (value - min) / (max - min);
+        float b = Mathf.Max(0, 1 - ratio);
+        float r = Mathf.Max(0, ratio - 1);
+        float g = 1 - b - r;
+        return new Color(r, g, b);
+    }
 }
