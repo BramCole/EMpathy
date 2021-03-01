@@ -9,18 +9,12 @@ using System;
 public class AnalyticCharge : MonoBehaviour
 {
 
-    [System.Serializable]
-    public class someMaterial
-    {
-        public Material material;  //uploading arrow materials
-    }
-    public someMaterial arrowMat;
+
     static int numArrows = 500;  //number of arrows to be made
     public GameObject newObject;
-    Material[] myMaterial = new Material[numArrows];
     Vector3 scaleSet = new Vector3(20, 30, 50);  //scale of arrow
     ArrayList arrowCollection = new ArrayList();
-
+    float[] eMagArray = new float[numArrows];
 
     public Vector3 pointSourcePos;
     public float pointSourceCharge; //can change public things in inspector
@@ -44,7 +38,7 @@ public class AnalyticCharge : MonoBehaviour
         Vector3 xHat = new Vector3(1, 0, 0); //points the arrow in the zHat direction
         Vector3 yHat = new Vector3(0, 1, 0);
         Vector3 zHat = new Vector3(0, 0, 1);
-        float coloumbConstant = 9 * 10 ^ 9;
+        float coloumbConstant = 9*10^9;
 
         float maxField = 0;  //all mag no direction so zero is minimum
 
@@ -94,29 +88,29 @@ public class AnalyticCharge : MonoBehaviour
 
 
                     Vector3 R = fieldPointPos - pointSourcePos;
-                    print(R);
+                    
                     //------------------------------needs to be refactored so we can retain code cohesion--------  //ie this is where we call whatever field funtion we are using(eg get capacitor)
                     //currently just using point charge
 
                     eField = ((coloumbConstant * pointSourceCharge) / (Mathf.Pow(Vector3.Magnitude(R), 2))) * Vector3.Normalize(R);
 
                     //-------------------------------------------------------------------------------
-                    
                     Vector3 eHat = Vector3.Normalize(eField);
                     float eMag = Vector3.Magnitude(eField);
+                    eMagArray[arrowCount] = eMag;
+
 
                     if (eMag > maxField)
                     {
                         maxField = eMag;
                     }
 
+
                     GameObject obj = Instantiate(newObject);
                     obj.transform.position = new Vector3(fieldPointPos.x, fieldPointPos.y, fieldPointPos.z);
                     obj.transform.localScale = scaleSet;
                     obj.transform.Rotate(0, ((180 / Mathf.PI) * Mathf.Atan2(-eHat.z, eHat.x)) + 180, (-180 / Mathf.PI) * Mathf.Asin(eHat.y));
                     arrowCollection.Add(obj);
-                    myMaterial[arrowCount] = arrowMat.material;
-                    myMaterial[arrowCount].color = new Color(eMag, 0, 0);
 
                     arrowCount++;
 
@@ -129,10 +123,15 @@ public class AnalyticCharge : MonoBehaviour
 
         }
 
+        GameObject[] arrowArray = new GameObject[numArrows];
+        arrowArray = (GameObject[])arrowCollection.ToArray(typeof(GameObject));  //get component does not work with arraylists
 
-       foreach (Material i in myMaterial)
+        for (int i = 0; i < arrowCollection.Count; i++)
         {
-            i.color = heatMap(0.0f, maxField,i.color.r);
+           MeshRenderer gameObjectRenderer = arrowArray[i].GetComponentInChildren<MeshRenderer>();   //get renderer and create a new material for each object
+           Material newMaterial = new Material(Shader.Find("Standard"));
+           newMaterial.color = heatMap(0.0f, maxField, eMagArray[i]);
+           gameObjectRenderer.material = newMaterial;
         }
 
     }
