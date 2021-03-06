@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ElectrostaticsFunctions : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class ElectrostaticsFunctions : MonoBehaviour
         
     }
 
-    Vector3 LineCharge(Vector3 fieldPointPos, Vector3 pointSourcePos, float charge, float length, Vector3 direction, int N){
+    Vector3 LineCharge(Vector3 fieldPointPos, Vector3 pointSourcePos, float charge, float length = 1, Vector3 direction = new Vector3(1,0,0), int N = 100){
         // E field from line of charge
 
         // fieldPointpos == measurment point
@@ -56,7 +57,7 @@ public class ElectrostaticsFunctions : MonoBehaviour
     }
 
 
-    Vector3 plateCharge(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float length, int N){
+    Vector3 plateCharge(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float length = 1, int N = 100){
         // E field from square plate of charge in xy plane
         // Probably wouldn't be too difficult to adjust for arbitrary orientation
         // Function models a plate as an NxN array of point charges. Calculates as N line charges of length N with equal spacing
@@ -90,6 +91,23 @@ public class ElectrostaticsFunctions : MonoBehaviour
         return totalEfield;
 
     }
+
+
+    Vector3 Capacitor(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float seperationZ = 10)
+    {
+
+        Vector3 secondPlate = plateSourcePos + new Vector3(0, 0, seperationZ);
+        
+        Vector3 totalEfield = plateCharge(fieldPointPos, plateSourcePos, charge);
+        totalEfield = totalEfield + plateCharge(fieldPointPos, secondPlate, -charge);
+
+        return totalEfield
+
+    }
+        
+        
+
+    
 
 
 
