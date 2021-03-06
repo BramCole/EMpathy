@@ -17,7 +17,7 @@ public class ElectrostaticsFunctions : MonoBehaviour
         
     }
 
-    Vector3 LineCharge(Vector3 fieldPointPos, Vector3 pointSourcePos, float charge, float length = 1, Vector3 direction = new Vector3(1,0,0), int N = 100){
+    Vector3 LineCharge(Vector3 fieldPointPos, Vector3 pointSourcePos, float charge, float length = 1, int N = 100){
         // E field from line of charge
 
         // fieldPointpos == measurment point
@@ -27,6 +27,7 @@ public class ElectrostaticsFunctions : MonoBehaviour
         // direction == direction of line from pointsourcepos
         // N == Number of points on line
         Vector3 totalEfield = new Vector3(0, 0, 0);
+        Vector3 direction = new Vector3(0, 0, 1);
 
         direction = direction.normalized;
         // divide charge and length by number of points
@@ -82,7 +83,7 @@ public class ElectrostaticsFunctions : MonoBehaviour
             // Start of first line is bottomLeftPlate. Subsequent lines start dL away in positive y direction
             Vector3 lineStart = bottomLeftPlate + dL * new Vector3(0, 1, 0);
             // Calculate E field from each line charge and sum
-            Vector3 eField = LineCharge(fieldPointPos, lineStart, dq_line, length, direction, N);
+            Vector3 eField = LineCharge(fieldPointPos, lineStart, dq_line, length, N);
             totalEfield = totalEfield + eField;
 
 
@@ -101,7 +102,7 @@ public class ElectrostaticsFunctions : MonoBehaviour
         Vector3 totalEfield = plateCharge(fieldPointPos, plateSourcePos, charge);
         totalEfield = totalEfield + plateCharge(fieldPointPos, secondPlate, -charge);
 
-        return totalEfield
+        return totalEfield;
 
     }
         
