@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class SlidePanel : MonoBehaviour
 {
     //Process touch for panel display on if the touch is greater than this threshold.
-    private float rightEdge = Screen.width * 0.75f;
+    private float rightEdge = Screen.width * 0.5f;
 
     //Minimum swipe distance for showing/hiding the panel.
-    float swipeDistance = 5f;
-
+    float swipeShowDistance = 5f;
+    float swipeHideDistance = 200f;
 
     float startXPos;
     bool processTouch = false;
@@ -50,13 +50,13 @@ public class SlidePanel : MonoBehaviour
                     float deltaX = touch.position.x - startXPos;
 
 
-                    if (isExpanded && deltaX > (swipeDistance))
+                    if (isExpanded && deltaX > (swipeHideDistance))
                     {
 
                         panelAnimation.SetTrigger("hideSide");
                         isExpanded = false;
                     }
-                    else if (!isExpanded && deltaX < (-swipeDistance))
+                    else if (!isExpanded && deltaX < (-swipeShowDistance))
                     {
                         panelAnimation.SetTrigger("showSide");
                         isExpanded = true;
