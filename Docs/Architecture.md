@@ -22,8 +22,14 @@
 #### 2.2 Component Diagrams
 *Provide here the diagram and a detailed description of its most valuable parts. There may be multiple diagrams. Include a description for each diagram. Subsections can be used to list components and their descriptions.*
 
+![image](https://user-images.githubusercontent.com/46005397/110365049-8b506300-8012-11eb-8985-1119d4687f47.png)
+
+
 #### 2.3 Class Diagrams
 *Provide here any class diagrams needed to illustrate the application. These can be ordered by which component they construct or contribute to. If there is any ambiguity in the diagram or if any piece needs more description provide it here as well in a subsection.*
+
+![image](https://user-images.githubusercontent.com/46005397/110364465-cef69d00-8011-11eb-8a77-f7edb1740c11.png)
+
 
 #### 2.4 Sequence Diagrams
 *Provide here any sequence diagrams. If possible list the use case they contribute to or solve. Provide descriptions if possible.*
