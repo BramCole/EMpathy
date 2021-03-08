@@ -10,7 +10,7 @@ public class AnalyticCharge : MonoBehaviour
 {
 
 
-    static int numArrows = 500;  //number of arrows to be made
+    static int numArrows = 1000;  //number of arrows to be made
     public GameObject newObject;
     Vector3 scaleSet = new Vector3(20, 30, 50);  //scale of arrow
     ArrayList arrowCollection = new ArrayList();
