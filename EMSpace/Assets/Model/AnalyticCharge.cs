@@ -207,7 +207,7 @@ public class AnalyticCharge : MonoBehaviour
     }
 
 
-    Vector3 plateCharge(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float length = 0.6f, int N = 9)
+    Vector3 plateCharge(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float length = 0.6f, int N = 100)
     {
         // E field from square plate of charge in xy plane
         // Probably wouldn't be too difficult to adjust for arbitrary orientation
@@ -244,14 +244,31 @@ public class AnalyticCharge : MonoBehaviour
 
     }
 
+    Vector3 plateCharge_analytical(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float length = 0.6f, int N = 100)
+    {
+        float top = length * length;
+        Vector3 rad = fieldPointPos - plateSourcePos;
+        float r = rad.magnitude;
+        float a = length;
+        float b = length;
+
+        float sigma = charge / (length * length);
+
+        float bottom = 4 * r * (float)Math.Sqrt((a / 2) * (a / 2) + (b / 2) * (b / 2) + r * r);
+
+        float arc = sigma * (float)Math.Atan2(top, bottom);
+
+        return sigma * rad.normalized;
+    }
+
 
     Vector3 Capacitor(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float seperationZ = 0.30f)
     {
-        //plateSourcePos = plateSourcePos + new Vector3(0, 0, -0.3f);
+        plateSourcePos = plateSourcePos + new Vector3(0, 0, 0);
         Vector3 secondPlate = plateSourcePos + new Vector3(0, 0, seperationZ);
 
-        Vector3 totalEfield = plateCharge(fieldPointPos, plateSourcePos, charge);
-        totalEfield = totalEfield + plateCharge(fieldPointPos, secondPlate, -charge);
+        Vector3 totalEfield = plateCharge_analytical(fieldPointPos, plateSourcePos, -charge);
+        totalEfield = totalEfield + plateCharge_analytical(fieldPointPos, secondPlate, -charge);
 
         return totalEfield;
 
