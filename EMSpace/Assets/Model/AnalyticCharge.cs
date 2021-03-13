@@ -143,4 +143,72 @@ public class AnalyticCharge : MonoBehaviour
     }
 
 
+<<<<<<< Updated upstream
+=======
+    Vector3 plateCharge(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float length = 0.6f, int N = 100)
+    {
+        // E field from square plate of charge in xy plane
+        // Probably wouldn't be too difficult to adjust for arbitrary orientation
+        // Function models a plate as an NxN array of point charges. Calculates as N line charges of length N with equal spacing
+
+        // fieldPointpos == measurment point
+        // pointSourcepos == Centre of plate
+        // charge == total charge of plate
+        // length == length of one side of plate
+        // N == Square root of number of points on plate
+        Vector3 totalEfield = new Vector3(0, 0, 0);
+
+        // Calculate the total charge of each line
+        float dq_line = charge / (float)N;
+        // calculate the distance between points
+        float dL = length / (float)(N - 1);
+        // Lines are always pointing in positive X
+        Vector3 direction = new Vector3(1, 0, 0);
+        // find the coordinates of bottom left corner of plate
+        Vector3 bottomLeftPlate = plateSourcePos - new Vector3(length / 2, length / 2, 0);
+        // Step through each line charge
+        for (int i = 0; i < N; i++)
+        {
+            // Start of first line is bottomLeftPlate. Subsequent lines start dL away in positive y direction
+            Vector3 lineStart = bottomLeftPlate + i * dL * new Vector3(0, 1, 0);
+            // Calculate E field from each line charge and sum
+            Vector3 eField = LineCharge(fieldPointPos, lineStart, dq_line, length, N);
+            totalEfield = totalEfield + eField;
+
+
+        }
+
+        return totalEfield;
+
+    }
+
+    Vector3 plateCharge_analytical(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float length = 0.9f, int N = 100)
+    {
+        float top = length * length;
+        Vector3 rad = fieldPointPos - plateSourcePos;
+        float r = rad.magnitude;
+        float a = length;
+        float b = length;
+
+        float sigma = charge / (length * length);
+
+        float bottom = 4 * r * (float)Math.Sqrt((a / 2) * (a / 2) + (b / 2) * (b / 2) + r * r);
+
+        float arc = sigma * (float)Math.Atan2(top, bottom);
+
+        return 100 * sigma * rad.normalized;
+    }
+
+
+    Vector3 Capacitor(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float seperationZ = 0.30f)
+    {
+        plateSourcePos = plateSourcePos + new Vector3(0, 0, 0);
+        Vector3 secondPlate = plateSourcePos + new Vector3(0, 0, seperationZ);
+
+        Vector3 totalEfield = plateCharge(fieldPointPos, plateSourcePos, +charge);
+        totalEfield = totalEfield + plateCharge(fieldPointPos, secondPlate, -charge);
+
+        return totalEfield;
+
+>>>>>>> Stashed changes
     }
