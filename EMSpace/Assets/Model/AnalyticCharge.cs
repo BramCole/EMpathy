@@ -16,7 +16,7 @@ public class AnalyticCharge : MonoBehaviour
     ArrayList arrowCollection = new ArrayList();
     float[] eMagArray = new float[numArrows];
 
-    public Vector3 pointSourcePos;
+    public Vector3 originPoint;
     public float pointSourceCharge; //can change public things in inspector
     Vector3 fieldPointPos;
     Vector3 eField;
@@ -51,11 +51,11 @@ public class AnalyticCharge : MonoBehaviour
         {
             if (xPlaneCount % 2 == 0)
             {
-                fieldPointPos.x = pointSourcePos.x + (xPlaneCount / 2) * xPlaneSpacing;  //this mod thing makes it so arrows generate symmetrically around a point
+                fieldPointPos.x = originPoint.x + (xPlaneCount / 2) * xPlaneSpacing;  //this mod thing makes it so arrows generate symmetrically around a point
             }
             else   //TODO consider turning into function to increase readability
             {
-                fieldPointPos.x = pointSourcePos.x - (xPlaneCount / 2) * xPlaneSpacing;
+                fieldPointPos.x = originPoint.x - (xPlaneCount / 2) * xPlaneSpacing;
             }
 
 
@@ -65,11 +65,11 @@ public class AnalyticCharge : MonoBehaviour
 
                 if (i % 2 == 0)
                 {
-                    fieldPointPos.y = pointSourcePos.y + (i / 2) * ySpacing;
+                    fieldPointPos.y = originPoint.y + (i / 2) * ySpacing;
                 }
                 else
                 {
-                    fieldPointPos.y = pointSourcePos.y - (i / 2) * ySpacing - ySpacing;  //i starts at zero so we would apply an arrow to the same postion twice if we did not offset(could also alter i)
+                    fieldPointPos.y = originPoint.y - (i / 2) * ySpacing - ySpacing;  //i starts at zero so we would apply an arrow to the same postion twice if we did not offset(could also alter i)
                 }
 
 
@@ -78,21 +78,21 @@ public class AnalyticCharge : MonoBehaviour
 
                     if (j % 2 == 0)
                     {
-                        fieldPointPos.z = pointSourcePos.z + (j / 2) * zSpacing;
+                        fieldPointPos.z = originPoint.z + (j / 2) * zSpacing;
                     }
                     else
                     {
-                        fieldPointPos.z = pointSourcePos.z - (j / 2) * zSpacing - zSpacing;
+                        fieldPointPos.z = originPoint.z - (j / 2) * zSpacing - zSpacing;
                     }
 
 
 
-                    Vector3 R = fieldPointPos - pointSourcePos;
+                    Vector3 R = fieldPointPos - originPoint;
 
                     //------------------------------needs to be refactored so we can retain code cohesion--------  //ie this is where we call whatever field funtion we are using(eg get capacitor)
                     //currently just using point charge
 
-                    eField = LineCharge(fieldPointPos, pointSourcePos, pointSourceCharge);
+                    eField = Capacitor(fieldPointPos, originPoint, pointSourceCharge);
 
                     //-------------------------------------------------------------------------------
                     Vector3 eHat = Vector3.Normalize(eField);
@@ -162,7 +162,7 @@ public class AnalyticCharge : MonoBehaviour
         
     }
 
-    Vector3 LineCharge(Vector3 fieldPointPos, Vector3 pointSourcePos, float charge, float length = 0.3f, int N = 100)
+    Vector3 LineCharge(Vector3 fieldPointPos, Vector3 pointSourcePos, float charge, float length = 0.9f, int N = 13)
     {
         // E field from line of charge
 
@@ -172,6 +172,7 @@ public class AnalyticCharge : MonoBehaviour
         // length == length of line
         // direction == direction of line from pointsourcepos
         // N == Number of points on line
+        
         Vector3 totalEfield = new Vector3(0, 0, 0);
         Vector3 direction = new Vector3(1, 0, 0);
 
@@ -206,7 +207,7 @@ public class AnalyticCharge : MonoBehaviour
     }
 
 
-    Vector3 plateCharge(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float length = 1, int N = 100)
+    Vector3 plateCharge(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float length = 0.6f, int N = 9)
     {
         // E field from square plate of charge in xy plane
         // Probably wouldn't be too difficult to adjust for arbitrary orientation
@@ -231,7 +232,7 @@ public class AnalyticCharge : MonoBehaviour
         for (int i = 0; i < N; i++)
         {
             // Start of first line is bottomLeftPlate. Subsequent lines start dL away in positive y direction
-            Vector3 lineStart = bottomLeftPlate + dL * new Vector3(0, 1, 0);
+            Vector3 lineStart = bottomLeftPlate + i * dL * new Vector3(0, 1, 0);
             // Calculate E field from each line charge and sum
             Vector3 eField = LineCharge(fieldPointPos, lineStart, dq_line, length, N);
             totalEfield = totalEfield + eField;
@@ -244,9 +245,9 @@ public class AnalyticCharge : MonoBehaviour
     }
 
 
-    Vector3 Capacitor(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float seperationZ = 10)
+    Vector3 Capacitor(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float seperationZ = 0.30f)
     {
-
+        //plateSourcePos = plateSourcePos + new Vector3(0, 0, -0.3f);
         Vector3 secondPlate = plateSourcePos + new Vector3(0, 0, seperationZ);
 
         Vector3 totalEfield = plateCharge(fieldPointPos, plateSourcePos, charge);
