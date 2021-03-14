@@ -9,11 +9,11 @@ using System;
 public class GenerateArrows : MonoBehaviour
 {
 
-
+    
     static int numArrows = 1000;  //number of arrows to be made
     public GameObject newObject;
     Vector3 scaleSet = new Vector3(20, 30, 50);  //scale of arrow
-    ArrayList arrowCollection = new ArrayList();
+    public ArrayList arrowCollection = new ArrayList();
     float[] eMagArray = new float[numArrows];
 
     public Vector3 originPoint;
@@ -33,7 +33,8 @@ public class GenerateArrows : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Start() { }
+    public void arrowGenFunc(string funcChoice)
     {
         Vector3 xHat = new Vector3(1, 0, 0); //points the arrow in the zHat direction
         Vector3 yHat = new Vector3(0, 1, 0);
@@ -89,10 +90,19 @@ public class GenerateArrows : MonoBehaviour
 
                     Vector3 R = fieldPointPos - originPoint;
 
-                    //------------------------------needs to be refactored so we can retain code cohesion--------  //ie this is where we call whatever field funtion we are using(eg get capacitor)
-                    //currently just using point charge
-
-                    eField = ElectrostaticsFunctions.Capacitor(fieldPointPos, originPoint, pointSourceCharge);
+                    //-------------------------------------  //ie this is where we call whatever field funtion we are using(eg get capacitor)
+                    if (funcChoice == "point")
+                    {
+                        eField = ElectrostaticsFunctions.SinglePointCharge(fieldPointPos, originPoint, pointSourceCharge);
+                    }
+                    else if (funcChoice == "line")
+                    {
+                        eField = ElectrostaticsFunctions.LineCharge(fieldPointPos, originPoint, pointSourceCharge);
+                    }
+                    else if (funcChoice == "capacitor")
+                    {
+                        eField = ElectrostaticsFunctions.Capacitor(fieldPointPos, originPoint, pointSourceCharge);
+                    }
 
                     //-------------------------------------------------------------------------------
                     Vector3 eHat = Vector3.Normalize(eField);
@@ -110,6 +120,7 @@ public class GenerateArrows : MonoBehaviour
                     obj.transform.position = new Vector3(fieldPointPos.x, fieldPointPos.y, fieldPointPos.z);
                     obj.transform.localScale = scaleSet;
                     obj.transform.Rotate(0, ((180 / Mathf.PI) * Mathf.Atan2(-eHat.z, eHat.x)) + 180, (-180 / Mathf.PI) * Mathf.Asin(eHat.y));
+                    obj.gameObject.tag = "clone";
                     arrowCollection.Add(obj);
 
                     arrowCount++;
@@ -135,9 +146,15 @@ public class GenerateArrows : MonoBehaviour
         }
 
     }
+
+
+
+
+
     // Update is called once per frame
     void Update()
     {
+        //an example of changing arrows
 
         //    count++;
 
