@@ -26,8 +26,10 @@ public class SlidePanel : MonoBehaviour
     }
 
 
-
-
+    /// <summary>
+    ///   <para>determines whether panel slide open animation should be played or slide closed based on finger swipe</para>
+    /// </summary>
+    /// <param name="Touch">an object that contains all relevant data corresponding to the touch</param>
     void Panel(Touch touch)
     {
         switch (touch.phase)

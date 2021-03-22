@@ -19,11 +19,21 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         Debug.Log("OnDrag");
     }
 
+
+    /// <summary>
+    ///   <para>Destroys all arrows on the screen. Calls arrowGeneration function in generateArrows</para>
+    /// </summary>
+    /// <param name="eventData">an object that contains all relevant data corresponding to the event</param>
     public void OnEndDrag(PointerEventData eventData)
     {
+        //when it comes to using delegates we want a hashmap of delegates(some key which goes through the hash function and retrives the delegate
+        //this solution scales well and wont bog up the code with if statments(use a dictonary as it is O(1)
+
+
+        
         //this is where we call out function  use eventData.position to call position
         Debug.Log("OnEndDrag");
-        Vector3 dropPosition = Camera.main.ScreenToWorldPoint(eventData.position);
+        Vector3 dropPosition = Camera.main.ScreenToWorldPoint(eventData.position);  //we need the actual world position not local coords
         GenerateArrows arrowScript = chargeGenObject.GetComponent<GenerateArrows>();
         //Destroy All Arrows
         GameObject[] arrowsDestroy = GameObject.FindGameObjectsWithTag("clone");
