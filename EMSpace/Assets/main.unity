@@ -728,7 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeGenObject: {fileID: 365992709}
-  functionChoice: point
+  functionChoice: SinglePointCharge
 --- !u!1 &868046257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeGenObject: {fileID: 365992709}
-  functionChoice: capacitor
+  functionChoice: Capacitor
 --- !u!1 &1281326594
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,7 +1358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeGenObject: {fileID: 365992709}
-  functionChoice: line
+  functionChoice: LineCharge
 --- !u!1 &1830344073
 GameObject:
   m_ObjectHideFlags: 0

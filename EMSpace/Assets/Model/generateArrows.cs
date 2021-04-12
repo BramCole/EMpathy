@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Reflection;
 
 //evenly spaced square instead of sphere
 
@@ -30,10 +31,35 @@ public class GenerateArrows : MonoBehaviour
 
 
 
-
+    
 
     // Start is called before the first frame update
-    void Start() { }
+
+    Dictionary<string, MethodInfo> methodMap = new Dictionary<string, MethodInfo>();
+    object eFuncObj;
+    void Start() {
+        //this code block uses dynamic method lookup (using reflection) to create a dictionary of functions to call
+        //this way we can bind the function to the drag and drop images in the slider by using a string with the function name //reflection must occur at runtime
+
+        Type myType = (typeof(ElectrostaticsFunctions));
+        ConstructorInfo eFuncConstructor = myType.GetConstructor(Type.EmptyTypes);
+        eFuncObj = eFuncConstructor.Invoke(new object[] { });
+
+        MethodInfo[] arrayMethods = myType.GetMethods();   
+
+        foreach (MethodInfo method in arrayMethods)
+        {
+            methodMap.Add(method.Name, method);   //we only need to run the reflection operation once when we start
+        }
+    }
+
+
+
+    /// <summary>
+    ///   <para>Generates arrows in a rectangular fashion around a center point. Arrow Generation is symmetric around the point. The colour range will be whatever
+    ///   the max value of the point is to zero (the heatmap is RGB). The arrows are also rotated to represent proper direction. </para>
+    /// </summary>
+    /// <param name="funcChoice">a string representing which function out of the electrostatics functions is to be chosen. This will later be converted to using delegates.</param>
     public void arrowGenFunc(string funcChoice)
     {
         Vector3 xHat = new Vector3(1, 0, 0); //points the arrow in the zHat direction
@@ -91,18 +117,9 @@ public class GenerateArrows : MonoBehaviour
                     Vector3 R = fieldPointPos - originPoint;
 
                     //-------------------------------------  //ie this is where we call whatever field funtion we are using(eg get capacitor)
-                    if (funcChoice == "point")
-                    {
-                        eField = ElectrostaticsFunctions.SinglePointCharge(fieldPointPos, originPoint, pointSourceCharge);
-                    }
-                    else if (funcChoice == "line")
-                    {
-                        eField = ElectrostaticsFunctions.LineCharge(fieldPointPos, originPoint, pointSourceCharge);
-                    }
-                    else if (funcChoice == "capacitor")
-                    {
-                        eField = ElectrostaticsFunctions.Capacitor(fieldPointPos, originPoint, pointSourceCharge);
-                    }
+
+                    object vectorInfo = methodMap[funcChoice].Invoke(eFuncObj, new object[] { fieldPointPos, originPoint, pointSourceCharge });
+                    eField = (Vector3)vectorInfo;
 
                     //-------------------------------------------------------------------------------
                     Vector3 eHat = Vector3.Normalize(eField);

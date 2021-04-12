@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public struct ElectrostaticsFunctions
+public class ElectrostaticsFunctions
 {
+    
     /// <summary>
 	///   <para>Returns the Electric field vector at the specified fieldPointPosition.</para>
 	/// </summary>
@@ -13,7 +14,7 @@ public struct ElectrostaticsFunctions
     /// <param name="charge">the charge at each dl segment</param>
     /// <param name="length"> the length of the line specified in world coordinates</param>
     /// <param name="N">number of mesh segments</param>
-    public static Vector3 LineCharge(Vector3 fieldPointPos, Vector3 pointSourcePos, float charge, float length = 0.9f, int N = 13)
+    public static Vector3 LineCharge(Vector3 fieldPointPos, Vector3 pointSourcePos, float charge)   //we want to pass in some charge collection object instead of random stuff
     {
         // E field from line of charge
 
@@ -23,6 +24,9 @@ public struct ElectrostaticsFunctions
         // length == length of line
         // direction == direction of line from pointsourcepos
         // N == Number of points on line
+
+        float length = 0.9f;
+        int N = 13;
 
         Vector3 totalEfield = new Vector3(0, 0, 0);
         Vector3 direction = new Vector3(1, 0, 0);
@@ -58,7 +62,7 @@ public struct ElectrostaticsFunctions
     }
 
 
-    public static Vector3 plateCharge(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float length = 0.6f, int N = 100)
+    public static Vector3 plateCharge(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge)
     {
         // E field from square plate of charge in xy plane
         // Probably wouldn't be too difficult to adjust for arbitrary orientation
@@ -69,6 +73,8 @@ public struct ElectrostaticsFunctions
         // charge == total charge of plate
         // length == length of one side of plate
         // N == Square root of number of points on plate
+        float length = 0.6f;
+          int N = 100;
         Vector3 totalEfield = new Vector3(0, 0, 0);
 
         // Calculate the total charge of each line
@@ -85,7 +91,7 @@ public struct ElectrostaticsFunctions
             // Start of first line is bottomLeftPlate. Subsequent lines start dL away in positive y direction
             Vector3 lineStart = bottomLeftPlate + i * dL * new Vector3(0, 1, 0);
             // Calculate E field from each line charge and sum
-            Vector3 eField = LineCharge(fieldPointPos, lineStart, dq_line, length, N);
+            Vector3 eField = LineCharge(fieldPointPos, lineStart, dq_line);
             totalEfield = totalEfield + eField;
 
 
@@ -95,8 +101,11 @@ public struct ElectrostaticsFunctions
 
     }
 
-    public static Vector3 plateCharge_analytical(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float length = 0.6f, int N = 100)
+    public static Vector3 plateCharge_analytical(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge)
     {
+
+        float length = 0.6f;
+        int N = 100;
         float top = length * length;
         Vector3 rad = fieldPointPos - plateSourcePos;
         float r = rad.magnitude;
@@ -113,8 +122,9 @@ public struct ElectrostaticsFunctions
     }
 
 
-    public static Vector3 Capacitor(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge, float seperationZ = 0.30f)
+    public static Vector3 Capacitor(Vector3 fieldPointPos, Vector3 plateSourcePos, float charge)
     {
+        float seperationZ = 0.30f;
         plateSourcePos = plateSourcePos + new Vector3(0, 0, 0);
         Vector3 secondPlate = plateSourcePos + new Vector3(0, 0, seperationZ);
 
