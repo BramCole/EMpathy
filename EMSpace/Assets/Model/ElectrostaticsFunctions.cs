@@ -167,7 +167,7 @@ public class ElectrostaticsFunctions
             rs = rs + dL;
 
             // Calculate the contribution from the differential lenght of wire
-            Vector3 mField = SinglePointOfCurrent(rm, rs, I, dL);
+            Vector3 mField = SinglePointOfCurrent1(rm, rs, I, dL);
             // Sum the contributions from each segment of wire
             totalMfield = totalMfield + mField;
 
@@ -188,7 +188,7 @@ public class ElectrostaticsFunctions
         return mField;
     }
 
-    public static Vector3 SinglePointOfCurrent(Vector3 fieldPointPos, Vector3 pointSourcePos, float I, Vector3 dL) // pass in current object later for know dl will be a const vector
+    public static Vector3 SinglePointOfCurrent1(Vector3 fieldPointPos, Vector3 pointSourcePos, float I, Vector3 dL) // pass in current object later for know dl will be a const vector
     {
         // Define some useful constants
         float mu_0 = 1.2566370614359173f;
@@ -243,7 +243,7 @@ public class ElectrostaticsFunctions
             z = z + (l / (float)N);
 
             // Initialize the magnetic field to the contribution of the first wire segment
-            totalMfield = totalMfield + SinglePointOfCurrent(rm, rs, I, dL);
+            totalMfield = totalMfield + SinglePointOfCurrent1(rm, rs, I, dL);
 
         }
 
