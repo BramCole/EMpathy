@@ -614,8 +614,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1245901764}
-  - component: {fileID: 1245901763}
-  - component: {fileID: 1245901762}
   m_Layer: 0
   m_Name: SettingsObject
   m_TagString: Untagged
@@ -623,38 +621,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1245901762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245901761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52b32f1a4f8dd44e1ab7b73c77adfd61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelAnimation: {fileID: 1245901763}
---- !u!95 &1245901763
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245901761}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: da68c8bfe58604a3c805064df092359c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1245901764
 Transform:
   m_ObjectHideFlags: 0

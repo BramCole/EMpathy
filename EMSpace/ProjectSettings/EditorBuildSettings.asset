@@ -14,4 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Settings.unity
     guid: bda97a80d53fe4d928879608a0b0fbe4
+  - enabled: 1
+    path: Assets/Scenes/VectorLesson/VectorLesson1.unity
+    guid: 16cdabe3d73e344afb5e129894eca7c7
+  - enabled: 1
+    path: Assets/Scenes/VectorLesson/VectorLesson2.unity
+    guid: 186b67156f9294fcf8c4ba850a960ebb
+  - enabled: 1
+    path: Assets/Scenes/VectorLesson/VectorLesson3.unity
+    guid: defb3e4fe18e4406581bda700d1ca98b
+  - enabled: 1
+    path: Assets/Scenes/VectorLesson/VectorLesson4.unity
+    guid: cc2c0578792b443438933c00ad237ece
   m_configObjects: {}
