@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldObject : MonoBehaviour
+public class FieldObject
 {
     public Dictionary<Vector3, Charge> chargeList; //the dictionary will enforce a uniquness of positions //operator overloading will be useful later on
     public Dictionary<Vector3, Current> currentList;

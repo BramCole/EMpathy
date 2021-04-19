@@ -55,7 +55,7 @@ public class ElectrostaticsFunctions
 
     public static Vector3 SinglePointCharge(Vector3 fieldPointPos, Vector3 pointSourcePos, float pointSourceCharge)
     {
-        float coloumbConstant = 9 * 10 ^ 9;
+        float coloumbConstant = 9 * Mathf.Pow(10,9);
         Vector3 R = fieldPointPos - pointSourcePos;
         Vector3 eField = (coloumbConstant * pointSourceCharge) / (Mathf.Pow(Vector3.Magnitude(R), 2)) * R.normalized;
 
