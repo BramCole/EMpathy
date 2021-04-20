@@ -209,41 +209,69 @@ public class GenerateArrows : MonoBehaviour
 
         float maxField = 0;  //all mag no direction so zero is minimum
         int NumArrows = 0;
+        float flowScale = 0.01f;
 
         Vector3 disp = new Vector3(0.01f, 0.01f, 0.01f);
         fieldPointPos = originPoint+ disp;
-        float flowScale = 0.01f;
 
-        for (int i = 0; i < 60; i++)
+        int numFlows = 6;
+       List<Vector3> positionArray = new List<Vector3>();
+
+        positionArray.Add(new Vector3(originPoint.x + 0.01f, originPoint.y +0.01f, originPoint.z +0.01f));
+        positionArray.Add(new Vector3(originPoint.x + 0.01f, originPoint.y + 0.01f, originPoint.z));
+        positionArray.Add(new Vector3(originPoint.x + 0.01f, originPoint.y, originPoint.z + 0.01f));
+        positionArray.Add(new Vector3(originPoint.x, originPoint.y + 0.01f, originPoint.z + 0.01f));
+
+        positionArray.Add(new Vector3(originPoint.x - 0.01f, originPoint.y - 0.01f, originPoint.z - 0.01f));
+        positionArray.Add(new Vector3(originPoint.x - 0.01f, originPoint.y - 0.01f, originPoint.z));
+        positionArray.Add(new Vector3(originPoint.x - 0.01f, originPoint.y, originPoint.z - 0.01f));
+        positionArray.Add(new Vector3(originPoint.x , originPoint.y - 0.01f, originPoint.z - 0.01f));
+        /*
+        for(int i=0; i<numFlows; i++)
         {
-            object vectorInfo = methodMap[funcChoice].Invoke(eFuncObj, new object[] { fieldPointPos, originPoint, pointSourceCharge });
-            eField = (Vector3)vectorInfo;
 
-            Vector3 eHat = Vector3.Normalize(eField);
-            float eMag = Vector3.Magnitude(eField);
-            Debug.Log(eMag);
 
-            if (eMag > maxField)
+
+            for(int j=0; j<numFlows; j++)
             {
-                maxField = eMag;
+                positionArray.Add(new Vector3(originPoint.x + 0.01f*Mathf.Sin((2*3.1415f)/i) * Mathf.Cos((2 * 3.1415f) / j), originPoint.y + 0.01f * Mathf.Cos((2 * 3.1415f) / i) * Mathf.Sin((2 * 3.1415f) / j), originPoint.z + 0.1f * Mathf.Cos((2 * 3.1415f) / i)));
             }
 
+        }*/
 
-            GameObject obj = Instantiate(newObject);
-            obj.transform.position = new Vector3(fieldPointPos.x, fieldPointPos.y, fieldPointPos.z);
-            obj.transform.localScale = scaleSet;
-            obj.transform.Rotate(0, ((180 / Mathf.PI) * Mathf.Atan2(-eHat.z, eHat.x)) + 180, (-180 / Mathf.PI) * Mathf.Asin(eHat.y));
-            obj.gameObject.tag = "clone";
-            arrowCollection.Add(obj);
+        for (int j = 0; j < positionArray.Count; j++)
+        {
+            fieldPointPos = positionArray[j];
+
+            for (int i = 0; i < 60; i++)
+            {
+                object vectorInfo = methodMap[funcChoice].Invoke(eFuncObj, new object[] { fieldPointPos, originPoint, pointSourceCharge });
+                eField = (Vector3)vectorInfo;
+
+                Vector3 eHat = Vector3.Normalize(eField);
+                float eMag = Vector3.Magnitude(eField);
+
+                if (eMag > maxField)
+                {
+                    maxField = eMag;
+                }
+
+
+                GameObject obj = Instantiate(newObject);
+                obj.transform.position = new Vector3(fieldPointPos.x, fieldPointPos.y, fieldPointPos.z);
+                obj.transform.localScale = scaleSet;
+                obj.transform.Rotate(0, ((180 / Mathf.PI) * Mathf.Atan2(-eHat.z, eHat.x)) + 180, (-180 / Mathf.PI) * Mathf.Asin(eHat.y));
+                obj.gameObject.tag = "clone";
+                arrowCollection.Add(obj);
 
 
 
-            fieldPointPos = fieldPointPos + flowScale * eHat;
+                fieldPointPos = fieldPointPos + flowScale * eHat;
 
-            NumArrows++;
+                NumArrows++;
 
+            }
         }
-        
     }
 
 
