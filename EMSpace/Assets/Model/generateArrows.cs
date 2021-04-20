@@ -196,4 +196,18 @@ public class GenerateArrows : MonoBehaviour
         
     }
 
+
+
+    public void FlowGenFunc(string funcChoice)
+    {
+        //to generate flow lines we need to choose starting points (we will choose radially from the charge collection origion(for now)
+        //we gen arrow equivlent to vector field at point we then move a small amount in that vectors direction 
+
+    }
+
+
+
 }
+
+
+

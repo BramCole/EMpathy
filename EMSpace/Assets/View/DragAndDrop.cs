@@ -19,12 +19,12 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
+        //Debug.Log("OnBeginDrag");
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
+        //Debug.Log("OnDrag");
     }
 
 
@@ -40,7 +40,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
 
         
         //this is where we call out function  use eventData.position to call position
-        Debug.Log("OnEndDrag");
+        //Debug.Log("OnEndDrag");
         Vector3 dropPosition = Camera.main.ScreenToWorldPoint(eventData.position);  //we need the actual world position not local coords
         GenerateArrows arrowScript = chargeGenObject.GetComponent<GenerateArrows>();
         //Destroy All Arrows
@@ -56,7 +56,19 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
 
         //Call Generate
         arrowScript.originPoint = dropPosition;
-        arrowScript.arrowGenFunc(functionChoice);
+        Debug.Log(SettingsData.viewType);
+        if (SettingsData.viewType == "flow")
+        {
+            arrowScript.FlowGenFunc(functionChoice);
+        }
+        else if (SettingsData.viewType == "field")
+        {
+            arrowScript.arrowGenFunc(functionChoice);
+        }
+        else
+        {
+            arrowScript.arrowGenFunc(functionChoice);
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)

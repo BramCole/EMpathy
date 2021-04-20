@@ -10,4 +10,10 @@ public class ChangeScene : MonoBehaviour
     {
         SceneManager.LoadScene(sceneToChangeTo);
     }
+
+    public void SetViewType(string type)
+    {
+        SceneManager.LoadScene(type);
+        //SettingsData.viewType = type;
+    }
 }
