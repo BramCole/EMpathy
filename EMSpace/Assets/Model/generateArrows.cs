@@ -201,8 +201,49 @@ public class GenerateArrows : MonoBehaviour
     public void FlowGenFunc(string funcChoice)
     {
         //to generate flow lines we need to choose starting points (we will choose radially from the charge collection origion(for now)
-        //we gen arrow equivlent to vector field at point we then move a small amount in that vectors direction 
+        //we gen arrow equivlent to vector field at point we then move a small amount in that vectors direction
+        Vector3 xHat = new Vector3(1, 0, 0); //points the arrow in the zHat direction
+        Vector3 yHat = new Vector3(0, 1, 0);
+        Vector3 zHat = new Vector3(0, 0, 1);
+        float coloumbConstant = 9 * 10 ^ 9;
 
+        float maxField = 0;  //all mag no direction so zero is minimum
+        int NumArrows = 0;
+
+        Vector3 disp = new Vector3(0.01f, 0.01f, 0.01f);
+        fieldPointPos = originPoint+ disp;
+        float flowScale = 0.01f;
+
+        for (int i = 0; i < 60; i++)
+        {
+            object vectorInfo = methodMap[funcChoice].Invoke(eFuncObj, new object[] { fieldPointPos, originPoint, pointSourceCharge });
+            eField = (Vector3)vectorInfo;
+
+            Vector3 eHat = Vector3.Normalize(eField);
+            float eMag = Vector3.Magnitude(eField);
+            Debug.Log(eMag);
+
+            if (eMag > maxField)
+            {
+                maxField = eMag;
+            }
+
+
+            GameObject obj = Instantiate(newObject);
+            obj.transform.position = new Vector3(fieldPointPos.x, fieldPointPos.y, fieldPointPos.z);
+            obj.transform.localScale = scaleSet;
+            obj.transform.Rotate(0, ((180 / Mathf.PI) * Mathf.Atan2(-eHat.z, eHat.x)) + 180, (-180 / Mathf.PI) * Mathf.Asin(eHat.y));
+            obj.gameObject.tag = "clone";
+            arrowCollection.Add(obj);
+
+
+
+            fieldPointPos = fieldPointPos + flowScale * eHat;
+
+            NumArrows++;
+
+        }
+        
     }
 
 
